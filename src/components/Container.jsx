@@ -75,18 +75,18 @@ const Container = () => {
                         <div className="datos   ">
                             <div className="row">
                                 <div className="col">
-                                    <h6>Temperatura: <h3>{temperatura}</h3></h6>
+                                    <h6>Temperatura: </h6><h3>{temperatura}</h3>
                                 </div>
                                 <div className="col">
-                                    <h6>Humedad: <h3>{hummedad} %</h3></h6>
+                                    <h6>Humedad: </h6><h3>{hummedad} %</h3>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col">
-                                    <h6>Visibilidad: <h3>{visibilidad} KM</h3></h6>
+                                    <h6>Visibilidad: </h6><h3>{visibilidad} KM</h3>
                                 </div>
                                 <div className="col">
-                                    <h6>Presion: <h3>{presion} hPa</h3></h6>
+                                    <h6>Presion: </h6><h3>{presion} hPa</h3>
                                 </div>
                             </div>
                             
@@ -105,8 +105,8 @@ const Container = () => {
             </div>
             
         </div>
-    
-     );
+        
+        );
 }
  
 export default Container;

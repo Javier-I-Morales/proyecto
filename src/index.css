@@ -42,6 +42,7 @@ div.lista{
   margin-bottom: 20px
 }
 
+
 .lista::-webkit-scrollbar{
   display: none;
 }
