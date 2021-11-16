@@ -74,18 +74,26 @@ const Container = () => {
                     <div className="row container">
                         <div className="datos   ">
                             <div className="row">
-                                <div className="col">
+                                <div className="col" style={{
+                                textAlign: 'center', 
+                            }}>
                                     <h6>Temperatura: </h6><h3>{temperatura}</h3>
                                 </div>
-                                <div className="col">
+                                <div className="col" style={{
+                                textAlign: 'center', 
+                            }}>
                                     <h6>Humedad: </h6><h3>{hummedad} %</h3>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col">
+                                <div className="col" style={{
+                                textAlign: 'center', 
+                            }}>
                                     <h6>Visibilidad: </h6><h3>{visibilidad} KM</h3>
                                 </div>
-                                <div className="col">
+                                <div className="col" style={{
+                                textAlign: 'center', 
+                            }}>
                                     <h6>Presion: </h6><h3>{presion} hPa</h3>
                                 </div>
                             </div>
@@ -94,7 +102,9 @@ const Container = () => {
                     </div><br />
                     <div className="row container">
                     <div className="datos">
-                            <div><h6>Descripción:</h6></div>
+                            <div style={{
+                                textAlign: 'center', marginTop: '10px', 
+                            }}><h6>Descripción:</h6></div>
                             <div className="d-flex justify-content-center color_Provincia"><h3> {descripcion}.</h3></div>
                             
                         </div>
