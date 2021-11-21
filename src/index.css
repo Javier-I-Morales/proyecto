@@ -24,7 +24,7 @@ code {
   
 }
 
-.subtitulo_datos{
+.subtitulos{
   color:rgb(68, 68, 68);
 }
 
@@ -34,12 +34,17 @@ code {
 }
 
 div.lista{
-  background-color: aqua;
+  background-color:  rgb(68, 68, 68);
   box-shadow: -1px 1px 7px 0px rgb(17, 16, 17);
-  max-height: 40vh;
+  max-height: 50vh;
   text-align: center;
   overflow-y: scroll;
   margin-bottom: 20px
+}
+
+div.marco{
+  border-radius: 5px;
+  border: 1px solid rgb(204, 204, 204);;
 }
 
 
@@ -47,10 +52,7 @@ div.lista{
   display: none;
 }
 
-div.datos{
-  box-shadow: -1px 1px 7px 0px rgb(17, 16, 17);
-  background-color: white;
-}
+
 
 .footer{
   padding-top: 10px;
