@@ -23,8 +23,8 @@ const Ciudad = ({clima, nombre, setCiudad, setProvincia, setTemperatura, setHume
     }
 
     return ( 
-        <div className="list-group-item ">
-            <h5  className=" ciudad_enlace" onClick={()=>{mostrarDato()}}>{nombre}</h5>
+        <div className="list-group-item " style={{backgroundColor:"aliceblue",}}>
+            <h5  className=" ciudad_enlace"  onClick={()=>{mostrarDato()}}>{nombre}</h5>
         </div>
      );
 }

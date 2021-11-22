@@ -7,7 +7,7 @@ const Container = () => {
 
     const [clima, setClima] = useState([])
 
-    const climaOrdenado = []
+    let climaOrdenado = []
  
     const [ciudad, setCiudad] = useState()
     const [provincia, setProvincia] = useState()
@@ -18,12 +18,16 @@ const Container = () => {
     const [presion, setPresion] = useState()
     const [descripcion, setDescripcion] = useState()
 
+    
+
     useEffect( () => {
         traeClima()
         
     },[])
- 
+
     ordenaClima();
+ 
+    
 
     function ordenaClima(){
 
@@ -45,6 +49,7 @@ const Container = () => {
         }
     }
 
+    
     function mostrarDato(lugar){
 
         setCiudad(lugar.name)
@@ -58,12 +63,15 @@ const Container = () => {
         console.log(lugar)
     }
 
+
     const formulario = document.querySelector('#formulario');
 
+    
     function cleanCadena(texto) {
         return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-       }
+    }
     
+
     const filtrar = () =>{
 
         const texto = cleanCadena(formulario.value.toLowerCase());
@@ -72,16 +80,46 @@ const Container = () => {
         
         for(let ciudad of clima){
             let nombre = cleanCadena(ciudad.name.toLowerCase());
-            if(nombre === texto){
+            if(nombre === texto || nombre.indexOf(texto) !== -1){
                 console.log(nombre);
-                mostrarDato(ciudad); 
+                mostrarDato(ciudad);
             }
         }
     }
 
-    return ( 
 
-        
+    const mostrarClima = (tipo) =>{
+
+        return (
+            tipo.map( (item, index) =>                
+            (
+                <Ciudad 
+                    key = {index}
+                    clima ={clima}
+                    nombre = {item}
+                    setCiudad ={setCiudad}
+                    setProvincia = {setProvincia}
+                    setTemperatura = {setTemperatura}
+                    setHumedad = {setHumedad}
+                    setVisibilidad = {setVisibilidad}
+                    setPresion = {setPresion}
+                    setDescripcion = {setDescripcion}
+                />
+            )
+        ))
+    }
+
+    const mostrarImagen=(estado)=>{
+
+        if(estado === "Despejado") return <img className='img-fluid'src="soleado.gif" alt="" />
+        if(estado === "Algo nublado" || estado === "Parcialmente nublado") return <img className='img-fluid'src="algo-nublado.gif" alt="" />
+        if(estado === "Cubierto" || estado === "Nublado") return <img className='img-fluid'src="cubierto.gif" alt="" />
+        if(estado === "Nublado con lluvia" || estado === "Nublado con precipitación a la vista" || estado === "Nublado con lluvia en la hora anterior") return <img className='img-fluid' src="cubierto-con-lluvia.gif" alt="" />
+       
+    }
+
+
+    return ( 
 
         <div className="container">
             <div className="row altura_total_datos">
@@ -92,45 +130,36 @@ const Container = () => {
                 <div className="col-sm-12 col-md-6 col-lg-4">
                     <div >
                         <div className="container" >
-                        <label  className="form-label"><h4 className="subtitulos">Buscador</h4></label>
+                        <label  className="form-label "><h4 className="subtitulos ">Buscador</h4></label><br />
+                        </div>
+                        <div className='row'>
+                            <div className='col-10 col-md-8 col-lg-11'>
+                                <input className="caja_buscar" type='text' style={{backgroundColor:"aliceblue",}} id='formulario' placeholder="Escriba su ciudad aquí..."/>
+
+                            </div>
+                            <div className='col-2 col-md-4 col-lg-1'>
+                                <img className="ciudad_enlace" src="lupa.png" alt="" onClick={filtrar} />
+                            </div>
+                        </div>
                         
-                        <input className="form-control" type='text' id='formulario' placeholder="Escriba su ciudad aquí..."/><button className='btn btn-info' id='boton' onClick={filtrar}>Buscar</button>
-             
                         <br /><br />
                         <div className="lista">
                             <div className="container" >
-                            {climaOrdenado.map( (item, index) => 
-                            
-                            (
-                                <Ciudad 
-                                    key = {index}
-                                    clima ={clima}
-                                    nombre = {item}
-                                    setCiudad ={setCiudad}
-                                    setProvincia = {setProvincia}
-                                    setTemperatura = {setTemperatura}
-                                    setHumedad = {setHumedad}
-                                    setVisibilidad = {setVisibilidad}
-                                    setPresion = {setPresion}
-                                    setDescripcion = {setDescripcion}
-                                />
-                            )
-                            )}
+                            {
+                                mostrarClima(climaOrdenado)     
+                            }
                                 
                             </div>
                         </div>
-                            
-                        </div>
-                        
                     </div>
                         
                 </div>
-                <div className="col-sm-12 col-md-6 col-lg-8">
-                    <div className="row container">
-                    <div className="subtitulos"><h4>Datos</h4></div>
-                        <div className='marco'>
+                <div className=" col-12 col-md-6 col-lg-8 " >
+                    <div className="row container centrar">
+                    <div className="subtitulos d-flex justify-content-center"><h4>Datos</h4></div>
+                        <div className='marco '>
                             <h2 style={{
-                                textAlign: 'center', 
+                                textAlign: 'center',
                             }}>{ciudad}</h2>
                             
                             <div className="d-flex justify-content-center "><h4 style={{
@@ -139,7 +168,7 @@ const Container = () => {
                             
                         </div>
                     </div><br />
-                    <div className="row container">
+                    <div className="row container centrar">
                     <div className="marco">
                             <div style={{
                                 textAlign: 'center', marginTop: '10px', 
@@ -150,20 +179,22 @@ const Container = () => {
                     
                     </div>
                     <br />
-                    <div className=" row container">
-                        <div className="col-sm-12 col-md-6 col-lg-6" style={{ paddingBottom:10}}>
+                    <div className=" row container centrar">
+                        <div className="col-12 col-md-6 col-lg-6" style={{ paddingBottom:10}}>
                             
                                 <div className="marco" style={{
                                 textAlign: 'center',
-                                paddingTop:25,
-                                paddingBottom:25, 
+                                paddingTop:5,
+                                paddingBottom:5, 
                             }}>
-                                    <h1>holaa</h1>
+                                    {
+                                        mostrarImagen(descripcion)
+                                    }
                                 </div>
                             
                         </div >
                         
-                        <div className="col-sm-12 col-md-6 col-lg-6">
+                        <div className="col-12 col-md-6 col-lg-6">
                             <div className="marco" style={{
                                     textAlign: 'center',
                                     paddingTop:25,
